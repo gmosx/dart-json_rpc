@@ -1,3 +1,5 @@
 name: json_rpc
-author: George Moschovitis
-description: A sample web application
+version: 0.1.1
+author: George Moschovitis <george.moschovitis@gmail.com>
+description: JSON-RPC for Dart.
+homepage: https://github.com/gmosx/dart-json_rpc

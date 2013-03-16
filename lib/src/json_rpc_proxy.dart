@@ -5,8 +5,7 @@ part of json_rpc;
  */
 class JsonRpcProxy extends JsonRpcClient {
   noSuchMethod(InvocationMirror invocation) {
-    // TODO: also handle arguments!
-    return call(invocation.memberName);
+    return call(invocation.memberName, params: invocation.positionalArguments);
   }
 
   JsonRpcProxy(String uri) : super(uri);

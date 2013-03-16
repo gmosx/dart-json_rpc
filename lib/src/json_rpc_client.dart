@@ -25,14 +25,14 @@ class JsonRpcClient {
    * params - An Array of objects to pass as arguments to the method.
    * id - The request id. This can be of any type. It is used to match the response with the request that it is replying to.
    */
-  Future call(String method, [params, id]) { // TODO: rename to request?
+  Future call(String method, {params: const [], id}) { // TODO: rename to request?
     final completer = new Completer(),
           conn = _client.postUrl(new Uri.fromString(uri)).then(
               (HttpClientRequest req) {
                 final payload = JSON.stringify({
                   'jsonrpc': JSON_RPC_VERSION,
                   'method': method,
-                  'params': [],
+                  'params': params,
                   'id': id != null ? id : new DateTime.now().millisecondsSinceEpoch
                 });
 
@@ -40,7 +40,7 @@ class JsonRpcClient {
                 req.contentLength = payload.length;
                 req.addString(payload);
                 req.close();
-                
+
                 req.response.then(
                     (HttpClientResponse resp) {
                       resp.listen(
@@ -51,16 +51,16 @@ class JsonRpcClient {
                           } else if (payload['error'] != null) {
                             completer.completeError(payload['error']);
                           }
-                        }, 
+                        },
                         onError: (e) {
                           print(e);
-                        }, 
+                        },
                         onDone: () {
                           _client.close();
                         });
                     });
-              }, 
-              onError: (e) { 
+              },
+              onError: (e) {
                 print(e);
               });
 

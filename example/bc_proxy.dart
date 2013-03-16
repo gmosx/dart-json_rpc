@@ -10,4 +10,8 @@ void main() {
   btc.getinfo().then((info) {
     print(info);
   });
+
+  btc.validateaddress('13TEPcN2kyQiT4p8hQPKcXXuWFnRps1NTY').then((res) {
+    print(res);
+  });
 }
