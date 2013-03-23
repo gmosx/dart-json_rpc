@@ -1,5 +1,5 @@
 name: json_rpc
-version: 0.1.1
+version: 0.1.2
 author: George Moschovitis <george.moschovitis@gmail.com>
 description: JSON-RPC for Dart.
 homepage: https://github.com/gmosx/dart-json_rpc

@@ -38,7 +38,7 @@ class JsonRpcClient {
 
                 req.headers.add('content-type', JSON_MIME_TYPE);
                 req.contentLength = payload.length;
-                req.addString(payload);
+                req.write(payload);
                 req.close();
 
                 req.response.then(
